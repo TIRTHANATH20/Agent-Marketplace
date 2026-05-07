@@ -1,463 +1,197 @@
 # Agent Marketplace
 
-> A modern marketplace platform for AI agents with authentication, real-time A2A communication, and comprehensive logging.
+> A polished marketplace for AI agents with secure authentication, agent-to-agent communication, and live operational logs.
 
-A complete agent marketplace system featuring **3 production-ready agents**, **agent-to-agent communication**, **secure authentication**, and a **beautiful reactive dashboard**.
+![FastAPI](https://img.shields.io/badge/FastAPI-0F4C81?style=for-the-badge&logo=fastapi&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![JWT](https://img.shields.io/badge/JWT-Secure%20Access-111827?style=for-the-badge)
 
----
+<p align="center">
+  <img src="https://via.placeholder.com/1200x420/0f172a/ffffff?text=Agent+Marketplace" alt="Agent Marketplace banner" />
+</p>
 
-## 🎯 Key Features
+## Overview
 
-### 🤖 **3 Intelligent Agents**
+Agent Marketplace is a full-stack demo platform for browsing, purchasing, and querying AI agents. It combines a FastAPI backend with a React dashboard and supports authenticated access, per-agent demo limits, A2A messaging, and structured logging.
 
-- **Data Analyzer** (agent-001): Queries and analyzes business metrics, customer behavior, and trends
-- **Query Executive** (agent-002): Executes targeted database queries and data retrieval
-- **Report Generator** (agent-003): Creates comprehensive business reports and analytics
+## Highlights
 
-### 🔐 **Secure Authentication**
+| Area               | What you get                                                     |
+| ------------------ | ---------------------------------------------------------------- |
+| **Agent browsing** | Discover available agents, capabilities, and status in one place |
+| **Secure access**  | JWT login, hashed passwords, and purchase-based access keys      |
+| **A2A messaging**  | Send messages between agents and inspect the response history    |
+| **Live logs**      | Review request, auth, and communication events in real time      |
+| **Modern UI**      | React-based interface with modal flows and dashboard panels      |
 
-- JWT-based token authentication with secure secret keys
-- User registration and login with password hashing (bcrypt)
-- Demo access system with configurable free tier limits
-- Unique UUID access keys for purchased agents
-- Role-based access control (RBAC)
+## Features
 
-### 🔄 **Agent-to-Agent Communication (A2A)**
+- **Three core agents**: Data Analyzer, Query Executive, and Report Generator
+- **Demo access**: each user gets 10 free queries per agent before purchase
+- **Purchase flow**: buying an agent reveals a unique access key and API URL
+- **Access details**: purchased tokens are shown inside the UI without needing a refresh
+- **A2A communication**: agents can exchange messages and store history
+- **Security headers**: no-store caching and basic browser hardening on API responses
+- **Operational logging**: events are captured for authentication, queries, and messaging
 
-- Real-time message passing between agents
-- Message queue with history tracking
-- Complete communication audit trail
-- Full request/response lifecycle logging
+## Tech Stack
 
-### 📊 **Comprehensive Logging & Monitoring**
+- **Backend**: FastAPI, Uvicorn, Pydantic, SQLAlchemy, SQLite
+- **Auth**: JWT, `bcrypt`, `passlib`, `python-jose`
+- **Frontend**: React 18, React Router, Axios, `react-scripts`
+- **Integrations**: Groq client for agent responses, dotenv for config
 
-- Real-time event logging with multiple severity levels (INFO, WARN, ERROR)
-- Advanced filtering and search capabilities
-- Log persistence for audit compliance
-- Event tracking for all operations
+## Project Structure
 
-### ✨ **Intuitive Dashboard**
+```text
+.
+├── backend/
+│   ├── main.py
+│   ├── inspect_db.py
+│   └── requirements.txt
+├── frontend/
+│   ├── package.json
+│   ├── src/
+│   │   ├── App.js
+│   │   ├── App.css
+│   │   └── components/
+│   │       ├── AgentGrid.js
+│   │       ├── AgentModal.js
+│   │       ├── AuthModal.js
+│   │       ├── LogsPanel.js
+│   │       ├── MainContent.js
+│   │       ├── MCPToolsGrid.js
+│   │       └── A2APanel.js
+│   └── public/
+├── agents.py
+├── access.py
+├── auth.py
+├── README.md
+└── STATUS_REPORT.md
+```
 
-- Agent discovery and capability browsing
-- Agent-to-agent communication interface
-- Live logs viewer with real-time filtering
-- Purchase and access key management
-- Dark modern design with Tailwind CSS
-
----
-
-## 📋 Table of Contents
-
-- [Quick Start](#quick-start)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Installation & Setup](#installation--setup)
-- [Demo Credentials](#demo-credentials)
-- [Core Concepts](#core-concepts)
-- [API Endpoints](#api-endpoints)
-- [Usage Guide](#usage-guide)
-- [Security Features](#security-features)
-- [Troubleshooting](#troubleshooting)
-- [Future Enhancements](#future-enhancements)
-
----
-
-## ⚡ Quick Start
-
-Get up and running in 2 minutes:
+## Quick Start
 
 ### Prerequisites
 
-- Python 3.8+
-- A modern web browser
-- Basic command-line familiarity
+- Python 3.10+
+- Node.js 18+
+- `pip` and `npm`
 
-### 1. Start Backend (Terminal 1)
+### 1) Backend
 
 ```bash
 cd backend
+python -m venv .venv
+source .venv/bin/activate
 pip install -r requirements.txt
 python main.py
 ```
 
-The API will be running at `http://localhost:8000`
+The API runs on `http://127.0.0.1:8000`.
 
-### 2. Start Frontend (Terminal 2)
-
-```bash
-cd frontend
-python -m http.server 8080
-```
-
-Open http://localhost:8080 in your browser
-
-### 3. Login & Explore
-
-Use demo credentials:
-| Username | Password |
-|----------|----------|
-| admin | admin123 |
-| user1 | user123 |
-
-You now have **10 free queries per agent** to explore!
-
----
-
-## 🛠 Tech Stack
-
-- **Backend**: FastAPI, Python 3.8+
-- **Frontend**: Vanilla JavaScript, Tailwind CSS
-- **Database**: SQLite (Chinook sample database)
-- **Authentication**: JWT tokens, bcrypt password hashing
-- **Architecture**: RESTful API with real-time logging
-
----
-
-## 📁 Project Structure
-
-```
-.
-├── backend/
-│   ├── main.py                    # FastAPI application & agent definitions
-│   ├── requirements.txt           # Python dependencies
-│   └── marketplace.log           # Runtime logs (generated)
-├── frontend/
-│   ├── index.html                # Single-page application entry
-│   ├── package.json              # Frontend metadata
-│   ├── public/                   # Static assets
-│   └── src/
-│       ├── App.js                # Main React component
-│       ├── components/           # UI components
-│       │   ├── AgentGrid.js
-│       │   ├── AgentModal.js
-│       │   ├── A2APanel.js
-│       │   └── LogsPanel.js
-│       └── index.js              # React entry point
-├── agents.py                      # Example agent queries
-├── README.md                      # This file
-└── STATUS_REPORT.md              # Detailed implementation report
-
-```
-
----
-
-## 📦 Installation & Setup
-
-### Prerequisites Check
-
-Verify you have Python 3.8+:
-
-```bash
-python --version
-```
-
-### Step 1: Install Backend Dependencies
-
-```bash
-cd backend
-pip install -r requirements.txt
-```
-
-**Required packages:**
-
-- fastapi: Web framework
-- uvicorn: ASGI server
-- pydantic: Data validation
-- bcrypt: Password hashing
-- python-multipart: Form parsing
-
-### Step 2: Start the Backend Server
-
-```bash
-cd backend
-python main.py
-```
-
-Expected output:
-
-```
-INFO:     Uvicorn running on http://127.0.0.1:8000
-```
-
-### Step 3: Start the Frontend
-
-Open a new terminal:
+### 2) Frontend
 
 ```bash
 cd frontend
-python -m http.server 8080
+npm install
+npm start
 ```
 
-Then open **http://localhost:8080** in your browser.
+The app runs on `http://localhost:3000`.
 
----
+### 3) Demo credentials
 
-## 🔐 Demo Credentials
+| Username | Password   |
+| -------- | ---------- |
+| `admin`  | `admin123` |
+| `user1`  | `user123`  |
 
-Login with these test accounts:
+## Environment Variables
 
-| Username | Password | Role  |
-| -------- | -------- | ----- |
-| admin    | admin123 | Admin |
-| user1    | user123  | User  |
+Create a `.env` file in `backend/` if you want to customize the runtime:
 
----
-
-## 💡 Core Concepts
-
-### Demo Access System
-
-Every new user gets **10 free queries per agent** to try before purchasing:
-
-- Tracked server-side to prevent tampering
-- Counter decrements with each query
-- Returns "demo limit reached" after 10 queries
-- Purchase grants unlimited access with a unique UUID key
-
-### Agent Capabilities
-
-Each agent specializes in different data operations:
-
-| Agent                | ID        | Specialty                       |
-| -------------------- | --------- | ------------------------------- |
-| **Data Analyzer**    | agent-001 | Trends, metrics, top performers |
-| **Query Executive**  | agent-002 | Precise database queries        |
-| **Report Generator** | agent-003 | Comprehensive business reports  |
-
-### Access Key Authentication
-
-After purchasing an agent, you receive a UUID-based access key:
-
-```
-Authorization: Bearer 6be47ddd-53ab-4d02-92ec-e1b5c7ee1b7c
+```env
+SECRET_KEY=replace-with-a-long-random-secret
+GROQ_API_KEY=your-groq-key
+ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
 ```
 
-This allows unlimited queries to that specific agent.
+## Core Workflows
 
----
+### Browse and query agents
 
-## 🔐 Security Features
+1. Sign in with a demo account.
+2. Open the agent dashboard.
+3. Ask a question against any available agent.
+4. Track your demo limit as it decreases.
 
-### Access Control
+### Purchase access
 
-- ✅ JWT tokens and access keys are **never exposed in URLs**
-- ✅ Credentials only visible when clicking "Access Details" on owned agents
-- ✅ All credential requests authenticated via API (no storage in browser history)
-- ✅ Each purchased agent gets unique UUID-based access key
-- ✅ Only authenticated users can view their own access details
+1. Click **Purchase** on an agent.
+2. Receive a purchase token and access URL.
+3. Copy the credentials and reuse them for unlimited access to that agent.
 
-### Best Practices Built-In
+### Use A2A communication
 
-- ✅ Password hashing with bcrypt (not reversible)
-- ✅ Secure token generation and validation
-- ✅ Audit trail for all operations
-- ✅ Per-agent access control (demo vs purchased)
+1. Open the A2A panel.
+2. Select a source and destination agent.
+3. Send a JSON payload.
+4. Review the response and the message history.
 
----
-
-## 📚 API Endpoints
+## API Endpoints
 
 ### Authentication
 
-- `POST /auth/login` - Login user
-- `POST /auth/register` - Register new user
+- `POST /auth/login`
+- `POST /auth/register`
 
 ### Agents
 
-- `GET /agents` - Get all agents
-- `GET /agents/{agent_id}` - Get agent details
-- `GET /agents/{agent_id}/access-details` - Get access URL and key for owned agent (requires purchase)
-- `POST /agents/{agent_id}/purchase` - Purchase an agent
-- `POST /agents/send-message` - Send A2A message
-- `GET /agents/{agent_id}/messages` - Get agent messages
-- `GET /agents/{agent_id}/ask` - Query an agent (supports both JWT and access key authentication)
-- `GET /agents/communication/history` - Get communication history
+- `GET /agents`
+- `GET /agents/{agent_id}`
+- `GET /agents/{agent_id}/access-details`
+- `POST /agents/{agent_id}/purchase`
+- `POST /agents/send-message`
+- `GET /agents/{agent_id}/messages`
+- `GET /agents/{agent_id}/ask`
+- `GET /agents/communication/history`
 
 ### Logs
 
-- `GET /logs` - Get system logs
-- `GET /logs/events` - Get unique event types
-- `DELETE /logs` - Clear all logs (admin only)
+- `GET /logs`
+- `GET /logs/events`
+- `DELETE /logs`
 
 ### Health
 
-- `GET /health` - Health check
-- `GET /` - API info
-
----
-
-## 🚀 Usage Guide
-
-### Step 1: Login
-
-1. Open http://localhost:8080
-2. Enter test credentials (admin/admin123 or user1/user123)
-3. Click "Login" to authenticate
-4. You'll see your dashboard with 10 free queries per agent
-
-### Step 2: Explore Agents
-
-Navigate to **Agent Cards** tab to:
-- View all 3 available agents with descriptions
-- See each agent's capabilities
-- Preview what data each agent can access
-- Check your demo counter (starts at 10)
-
-### Step 3: Query an Agent
-
-1. Click "Ask" on any agent card
-2. Enter your question (e.g., "What are the top genres?" for Data Analyzer)
-3. View the response instantly
-4. Your demo counter decrements
-5. After 10 queries, you'll need to **Purchase** access
-
-### Step 4: Purchase Agent Access
-
-1. Click **"Purchase"** button on an agent
-2. Receive a unique UUID access key
-3. Copy the key and save it securely
-4. You now have **unlimited queries** for that agent
-
-### Step 5: A2A Communication
-
-For advanced users, test agent-to-agent messaging:
-
-1. Go to **"A2A Communication"** tab
-2. Select "From Agent" and "To Agent"
-3. Enter a JSON payload:
-```json
-{
-  "action": "query",
-  "data": "test request"
-}
-```
-4. Click "Send Message"
-5. View responses and communication history
-
-### Step 6: Monitor System
-
-View **Logs Viewer** tab to:
-- See all system events in real-time
-- Filter by event type
-- Track authentication, queries, and A2A communication
-- Monitor API access and performance
-
----
-
-## 📋 Full API Reference
-
-### Authentication Endpoints
-
-- `POST /auth/login` - Login user
-- `POST /auth/register` - Register new user
-
-### Agent Endpoints
-   - Agent communications
-   - API access logs
-   - System events
+- `GET /health`
+- `GET /`
 
 ## Security Notes
 
-⚠️ **Production Considerations:**
+- Tokens are not meant to be passed in URLs.
+- Purchased access uses unique UUID-based keys.
+- Credentials are only exposed to the authenticated owner.
+- Passwords are hashed before storage.
+- For production, replace the default secret key and use a real database.
 
-- Change `SECRET_KEY` in `main.py` to a secure random value
-- Use environment variables for sensitive configuration
-- Implement a real database (not in-memory)
-- Add rate limiting and API key management
-- Enable HTTPS/SSL for production
-- Use proper user management system
+## Contributions
 
-## Architecture
+If you want a simple way to check your GitHub activity:
 
-```
-┌─────────────────────────────────────────────────┐
-│          Frontend (HTML/JS/Tailwind)            │
-├─────────────────────────────────────────────────┤
-│                   FastAPI Backend               │
-│  ┌──────────────────────────────────────────┐   │
-│  │          Authentication Layer             │   │
-│  │  (JWT, Password Hashing, Permissions)    │   │
-│  └──────────────────────────────────────────┘   │
-│  ┌──────────────────────────────────────────┐   │
-│  │      Agent Management System              │   │
-│  │  (3 Agents with Capabilities)            │   │
-│  └──────────────────────────────────────────┘   │
-│  ┌──────────────────────────────────────────┐   │
-│  │  A2A Communication Layer                  │   │
-│  │  (Message Queue, History, Routing)       │   │
-│  └──────────────────────────────────────────┘   │
-│  ┌──────────────────────────────────────────┐   │
-│  │        Logging System                     │   │
-│  │  (Event Tracking, Audit Trail)           │   │
-│  └──────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────┘
-```
+- Open your profile page and review the contribution heatmap.
+- Visit `https://github.com/TIRTHANATH20` to see contribution activity.
+- Use this repo’s commit history for project-specific activity.
 
-## Example: A2A Communication
+## Roadmap
 
-From `Data Analyzer` to `Query Executive`:
-
-```json
-{
-  "action": "fetch_metrics",
-  "filters": {
-    "date_range": "last_30_days",
-    "category": "sales"
-  },
-  "format": "json"
-}
-```
-
-This creates a log entry:
-
-```
-[2024-04-04 10:30:45] A2A_MESSAGE | {
-  "message_id": "abc123...",
-  "from": "agent-001",
-  "to": "agent-002",
-  "payload": {...}
-}
-```
-
-## Troubleshooting
-
-### CORS Errors
-
-- Backend CORS is enabled for all origins (\* format)
-- Ensure backend is running on `http://localhost:8000`
-
-### Authentication Failed
-
-- Verify username and password match test credentials
-- Check browser console for error details
-
-### Logs Not Showing
-
-- Ensure you're logged in with valid token
-- Check backend logs at `backend/marketplace.log`
-
-### A2A Messages Not Sending
-
-- Verify agent IDs are correct (agent-001, agent-002, agent-003)
-- Ensure JSON payload is valid
-- Check that both agents exist
-
-## Future Enhancements
-
-- [ ] Database persistence (PostgreSQL/MongoDB)
-- [ ] Advanced agent routing with ML
-- [ ] Real-time WebSocket notifications
-- [ ] Agent performance metrics
-- [ ] Rate limiting and quotas
-- [ ] Multi-tenant support
-- [ ] Agent versioning and rollback
-- [ ] Custom agent creation UI
+- Add richer dashboard visuals and screenshots
+- Expand agent management and filtering
+- Improve log search and export options
+- Add tests for the purchase and access flow
 
 ## License
 
-MIT License - Feel free to use and modify
-
----
-
-**Created:** April 4, 2026  
-**Version:** 1.0
+This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
