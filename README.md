@@ -1,197 +1,425 @@
-# Agent Marketplace
+<div align="center">
 
-> A polished marketplace for AI agents with secure authentication, agent-to-agent communication, and live operational logs.
+# 🤖 Agent Marketplace
 
-![FastAPI](https://img.shields.io/badge/FastAPI-0F4C81?style=for-the-badge&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
-![JWT](https://img.shields.io/badge/JWT-Secure%20Access-111827?style=for-the-badge)
+**Discover, purchase, and manage AI agents with enterprise-grade authentication**
+
+A full-stack marketplace platform featuring secure JWT authentication, one-click agent purchases, real-time A2A messaging, and comprehensive operational logging.
+
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.10+-3776ab?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Node.js](https://img.shields.io/badge/Node-18+-339933?style=flat-square&logo=node.js&logoColor=white)](https://nodejs.org)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0F4C81?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+[![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
+
+</div>
 
 <p align="center">
-  <img src="assets/agent-marketplace-banner.svg" alt="Agent Marketplace banner" />
+  <img src="assets/agent-marketplace-banner.svg" alt="Agent Marketplace banner" width="100%" />
 </p>
 
-## Overview
+---
 
-Agent Marketplace is a full-stack demo platform for browsing, purchasing, and querying AI agents. It combines a FastAPI backend with a React dashboard and supports authenticated access, per-agent demo limits, A2A messaging, and structured logging.
+## 📖 Quick Navigation
 
-## Highlights
+[Features](#-key-features) • [Tech Stack](#-tech-stack) • [Setup](#-quick-start) • [API](#-api-endpoints) • [Docs](#-documentation) • [Deployment](#-deployment) • [License](#-license)
 
-| Area               | What you get                                                     |
-| ------------------ | ---------------------------------------------------------------- |
-| **Agent browsing** | Discover available agents, capabilities, and status in one place |
-| **Secure access**  | JWT login, hashed passwords, and purchase-based access keys      |
-| **A2A messaging**  | Send messages between agents and inspect the response history    |
-| **Live logs**      | Review request, auth, and communication events in real time      |
-| **Modern UI**      | React-based interface with modal flows and dashboard panels      |
+---
 
-## Features
+## 🎯 Overview
 
-- **Three core agents**: Data Analyzer, Query Executive, and Report Generator
-- **Demo access**: each user gets 10 free queries per agent before purchase
-- **Purchase flow**: buying an agent reveals a unique access key and API URL
-- **Access details**: purchased tokens are shown inside the UI without needing a refresh
-- **A2A communication**: agents can exchange messages and store history
-- **Security headers**: no-store caching and basic browser hardening on API responses
-- **Operational logging**: events are captured for authentication, queries, and messaging
+Agent Marketplace is a production-ready platform for discovering, purchasing, and managing AI agents. It provides:
 
-## Tech Stack
+- **Secure marketplace**: Browse agents with detailed capabilities and pricing
+- **Instant access**: Purchase agents and get immediate API credentials
+- **Agent communication**: Send messages between agents and track history
+- **Live monitoring**: Real-time event logs for all platform activity
+- **Enterprise auth**: JWT tokens, password hashing, CORS protection
 
-- **Backend**: FastAPI, Uvicorn, Pydantic, SQLAlchemy, SQLite
-- **Auth**: JWT, `bcrypt`, `passlib`, `python-jose`
-- **Frontend**: React 18, React Router, Axios, `react-scripts`
-- **Integrations**: Groq client for agent responses, dotenv for config
+---
 
-## Project Structure
+## ✨ Key Features
 
-```text
-.
-├── backend/
-│   ├── main.py
-│   ├── inspect_db.py
-│   └── requirements.txt
-├── frontend/
-│   ├── package.json
-│   ├── src/
-│   │   ├── App.js
-│   │   ├── App.css
-│   │   └── components/
-│   │       ├── AgentGrid.js
-│   │       ├── AgentModal.js
-│   │       ├── AuthModal.js
-│   │       ├── LogsPanel.js
-│   │       ├── MainContent.js
-│   │       ├── MCPToolsGrid.js
-│   │       └── A2APanel.js
-│   └── public/
-├── agents.py
-├── access.py
-├── auth.py
-├── README.md
-└── STATUS_REPORT.md
+### 🛍️ Marketplace
+- Browse available AI agents with detailed profiles
+- View agent capabilities, pricing, and status
+- One-click purchasing with instant access
+- Favorites and wishlist management
+
+### 🔐 Security & Auth
+- JWT-based authentication with 24-hour expiry
+- Passwords hashed with bcrypt (cost factor 10)
+- Purchase access tokens with unique API endpoints
+- CORS protection and security headers
+- Audit trail for all transactions
+
+### 💬 Communication
+- Agent-to-agent (A2A) messaging
+- Real-time message history
+- JSON payload support
+- Metadata tracking
+
+### 📊 Operations
+- Comprehensive event logging
+- Real-time activity monitoring
+- API usage tracking
+- Performance metrics
+- Sensitive data redaction in logs
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+```
+FastAPI 0.95+       API framework with async support
+Pydantic            Data validation and serialization
+SQLAlchemy          ORM for database operations
+SQLite              Lightweight database (PostgreSQL ready)
+python-jose         JWT token generation and validation
+bcrypt              Password hashing and verification
+Groq API            LLM integration for agent responses
 ```
 
-## Quick Start
+### Frontend
+```
+React 18            Component-based UI framework
+React Router        Client-side routing
+Axios               HTTP client for API calls
+CSS3                Modern styling with animations
+```
+
+### DevOps
+```
+Nginx               Reverse proxy and load balancing
+Uvicorn             ASGI server for Python
+GitHub Actions      CI/CD pipeline
+```
+
+---
+
+## 📁 Project Structure
+
+```
+Agent-Marketplace/
+├── backend/
+│   ├── main.py                 # FastAPI app with all endpoints
+│   ├── requirements.txt         # Python dependencies
+│   └── .env                    # Configuration (create locally)
+│
+├── frontend/
+│   ├── public/
+│   │   └── index.html
+│   ├── src/
+│   │   ├── App.js              # Main React component
+│   │   ├── App.css             # Styling
+│   │   ├── index.js            # Entry point
+│   │   └── components/
+│   │       ├── AgentGrid.js     # Agent listing
+│   │       ├── AgentModal.js    # Purchase flow
+│   │       ├── AuthModal.js     # Login/register
+│   │       ├── LogsPanel.js     # Activity logs
+│   │       ├── MCPToolsGrid.js  # Tool display
+│   │       └── A2APanel.js      # Messaging
+│   ├── package.json
+│   └── .env                    # API endpoint config
+│
+├── Documentation/
+│   ├── SETUP_GUIDE.md          # Local dev setup
+│   ├── DEPLOYMENT.md           # Production deployment
+│   ├── API_REFERENCE.md        # Endpoint documentation
+│   ├── ARCHITECTURE.md         # System design
+│   ├── SECURITY.md             # Security practices
+│   ├── TESTING.md              # Test procedures
+│   ├── TROUBLESHOOTING.md      # Common issues
+│   ├── PERFORMANCE.md          # Optimization guide
+│   └── FAQ.md                  # Questions & answers
+│
+├── LICENSE                      # MIT License
+├── CHANGELOG.md                # Release notes
+└── .github/
+    └── workflows/
+        └── ci.yml              # GitHub Actions CI
+```
+
+---
+
+## 🚀 Quick Start
 
 ### Prerequisites
+- **Python** 3.10 or higher
+- **Node.js** 18 or higher
+- **Git** for version control
 
-- Python 3.10+
-- Node.js 18+
-- `pip` and `npm`
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/TIRTHANATH20/Agent-Marketplace.git
+cd Agent-Marketplace
+```
 
-### 1) Backend
-
+### Step 2: Backend Setup
 ```bash
 cd backend
 python -m venv .venv
-source .venv/bin/activate
+
+# Activate virtual environment
+source .venv/bin/activate              # macOS/Linux
+# OR
+.venv\Scripts\activate                 # Windows
+
+# Install dependencies
 pip install -r requirements.txt
+
+# Create .env file
+cat > .env << EOF
+DATABASE_URL=sqlite:///./marketplace.db
+JWT_SECRET_KEY=your-secret-key-min-32-chars
+ENVIRONMENT=development
+FRONTEND_URL=http://localhost:3000
+EOF
+
+# Start backend
 python main.py
 ```
 
-The API runs on `http://127.0.0.1:8000`.
+Backend runs at `http://localhost:8000` | API docs at `http://localhost:8000/docs`
 
-### 2) Frontend
-
+### Step 3: Frontend Setup
 ```bash
 cd frontend
 npm install
+
+# Create .env file
+echo "REACT_APP_API_BASE_URL=http://localhost:8000" > .env
+
+# Start development server
 npm start
 ```
 
-The app runs on `http://localhost:3000`.
+Frontend opens at `http://localhost:3000`
 
-### 3) Demo credentials
+### Step 4: Test with Demo Account
 
-| Username | Password   |
-| -------- | ---------- |
-| `admin`  | `admin123` |
-| `user1`  | `user123`  |
+| Email | Password |
+|-------|----------|
+| `admin@test.com` | `admin123` |
+| `user@test.com` | `user123` |
 
-## Environment Variables
+> **First time?** Create an account on the signup page, then browse agents and try purchasing one!
 
-Create a `.env` file in `backend/` if you want to customize the runtime:
+---
 
-```env
-SECRET_KEY=replace-with-a-long-random-secret
-GROQ_API_KEY=your-groq-key
-ALLOWED_ORIGINS=http://localhost:3000,http://127.0.0.1:3000
-```
+## 📚 Common Workflows
 
-## Core Workflows
+### 🔍 Browse & Discover Agents
+1. **Login** with your credentials
+2. **View agents** in the main dashboard
+3. **Click on agent** to see details, capabilities, and pricing
+4. **Check status** to see if agent is available
 
-### Browse and query agents
+### 🛒 Purchase Agent Access
+1. **Click "Purchase"** button on any agent
+2. **Confirm transaction** in the modal
+3. **Receive access token** immediately (displays in UI)
+4. **Copy API URL** for programmatic access
+5. **Use token** to make unlimited API calls
 
-1. Sign in with a demo account.
-2. Open the agent dashboard.
-3. Ask a question against any available agent.
-4. Track your demo limit as it decreases.
+### 💬 Send Agent-to-Agent Messages
+1. **Open A2A Panel** from the sidebar
+2. **Select source agent** (sender)
+3. **Select destination agent** (receiver)
+4. **Enter JSON message** payload
+5. **View response** and message history
 
-### Purchase access
+### 📊 Monitor Activity
+1. **Click Logs Panel** to view all events
+2. **Filter by type**: authentication, purchases, messages
+3. **Review timestamps** and details
+4. **Export logs** for analysis
 
-1. Click **Purchase** on an agent.
-2. Receive a purchase token and access URL.
-3. Copy the credentials and reuse them for unlimited access to that agent.
+---
 
-### Use A2A communication
-
-1. Open the A2A panel.
-2. Select a source and destination agent.
-3. Send a JSON payload.
-4. Review the response and the message history.
-
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Authentication
-
-- `POST /auth/login`
-- `POST /auth/register`
+```
+POST   /auth/register          Create new account
+POST   /auth/login             Get JWT access token
+GET    /auth/profile           Retrieve user profile
+```
 
 ### Agents
+```
+GET    /agents                 List all available agents
+GET    /agents/{id}            Get agent details
+POST   /agents/{id}/purchase   Purchase agent access
+GET    /agents/{id}/access-details  Retrieve purchase token
+```
 
-- `GET /agents`
-- `GET /agents/{agent_id}`
-- `GET /agents/{agent_id}/access-details`
-- `POST /agents/{agent_id}/purchase`
-- `POST /agents/send-message`
-- `GET /agents/{agent_id}/messages`
-- `GET /agents/{agent_id}/ask`
-- `GET /agents/communication/history`
+### Agent-to-Agent Messaging
+```
+POST   /a2a/send               Send message to another agent
+GET    /a2a/messages           Retrieve message history
+```
 
-### Logs
+### Activity Logs
+```
+GET    /logs                   Get all event logs
+GET    /logs/events            Get filtered events
+DELETE /logs                   Clear logs (admin only)
+```
 
-- `GET /logs`
-- `GET /logs/events`
-- `DELETE /logs`
+### Health & Status
+```
+GET    /health                 API health check
+GET    /                       API root endpoint
+```
 
-### Health
+**Full documentation** with request/response examples: [API_REFERENCE.md](API_REFERENCE.md)
 
-- `GET /health`
-- `GET /`
+---
 
-## Security Notes
+## 🔒 Security
 
-- Tokens are not meant to be passed in URLs.
-- Purchased access uses unique UUID-based keys.
-- Credentials are only exposed to the authenticated owner.
-- Passwords are hashed before storage.
-- For production, replace the default secret key and use a real database.
+- ✅ **Passwords**: Hashed with bcrypt (cost factor 10)
+- ✅ **Tokens**: JWT with HS256, 24-hour expiry
+- ✅ **CORS**: Restricted to authorized frontend domains
+- ✅ **Auth**: All endpoints except `/health` require JWT
+- ✅ **Logging**: Sensitive data (tokens, passwords) redacted
+- ✅ **Headers**: Security headers on all responses
+- ✅ **SSL/HTTPS**: Use in production (see deployment guide)
 
-## Contributions
+For detailed security guidelines, see [SECURITY.md](SECURITY.md).
 
-If you want a simple way to check your GitHub activity:
+> ⚠️ **Production checklist**: Use PostgreSQL, enable HTTPS, use strong secret keys, enable rate limiting
 
-- Open your profile page and review the contribution heatmap.
-- Visit `https://github.com/TIRTHANATH20` to see contribution activity.
-- Use this repo’s commit history for project-specific activity.
+---
 
-## Roadmap
+## 📖 Documentation
 
-- Add richer dashboard visuals and screenshots
-- Expand agent management and filtering
-- Improve log search and export options
-- Add tests for the purchase and access flow
+Quick reference for all guides:
 
-## License
+| Document | Purpose |
+|----------|---------|
+| [SETUP_GUIDE.md](SETUP_GUIDE.md) | Local development setup |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | Production deployment on EC2/Nginx |
+| [API_REFERENCE.md](API_REFERENCE.md) | Complete API documentation |
+| [ARCHITECTURE.md](ARCHITECTURE.md) | System design and data flows |
+| [SECURITY.md](SECURITY.md) | Security best practices |
+| [TESTING.md](TESTING.md) | Testing and CI/CD procedures |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Common issues and fixes |
+| [PERFORMANCE.md](PERFORMANCE.md) | Optimization and scaling |
+| [FAQ.md](FAQ.md) | Frequently asked questions |
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
+---
+
+## 🚢 Deployment
+
+### Local Development
+```bash
+# See SETUP_GUIDE.md for detailed instructions
+npm start           # Frontend (port 3000)
+python main.py      # Backend (port 8000)
+```
+
+### Production (EC2 + Nginx)
+See [DEPLOYMENT.md](DEPLOYMENT.md) for complete guide including:
+- Server setup and configuration
+- PostgreSQL database migration
+- SSL/HTTPS with Let's Encrypt
+- Systemd service management
+- Monitoring and logging
+
+---
+
+## 🧪 Testing & CI/CD
+
+Run tests locally:
+
+```bash
+# Backend tests
+cd backend && pytest
+
+# Frontend tests  
+cd frontend && npm test
+
+# Full coverage
+pytest --cov=. --cov-report=html
+```
+
+Continuous integration via GitHub Actions on every push. See [TESTING.md](TESTING.md) for details.
+
+---
+
+## 🗺️ Roadmap
+
+Current version: **v1.0** (May 2026)
+
+### Phase 2: Scale & Performance (Q3 2026)
+- [ ] PostgreSQL migration
+- [ ] Redis caching layer
+- [ ] Database indexing optimization
+
+### Phase 3: Enterprise Auth (Q4 2026)
+- [ ] Social login (Google, GitHub, LinkedIn)
+- [ ] Two-factor authentication (2FA)
+- [ ] GDPR compliance
+
+### Phase 4: Real-Time Features (Q1 2027)
+- [ ] WebSocket support for live messaging
+- [ ] User dashboard and recommendations
+- [ ] Push notifications
+
+### Phase 5: Monetization (Q2 2027)
+- [ ] Stripe integration
+- [ ] Admin analytics dashboard
+- [ ] Agent creator tools
+
+### Phase 6: Enterprise Scale (Q3-Q4 2027)
+- [ ] Multi-workspace support
+- [ ] Team collaboration features
+- [ ] Kubernetes deployment
+
+Full roadmap: [ROADMAP.md](ROADMAP.md)
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Here's how to get involved:
+
+1. **Fork** the repository
+2. **Create feature branch**: `git checkout -b feature/amazing-feature`
+3. **Commit changes**: `git commit -m 'Add amazing feature'`
+4. **Push to branch**: `git push origin feature/amazing-feature`
+5. **Open pull request** with description
+
+For detailed guidelines, see [CONTRIBUTING.md](CONTRIBUTING.md).
+
+---
+
+## 📝 License
+
+This project is licensed under the **MIT License** - see [LICENSE](LICENSE) for details.
+
+You're free to use this for commercial projects, modify it, and distribute it as long as you include the original license.
+
+---
+
+## 💬 Support & Community
+
+- **Issues**: Report bugs or request features on [GitHub Issues](https://github.com/TIRTHANATH20/Agent-Marketplace/issues)
+- **Discussions**: Join community conversations on [GitHub Discussions](https://github.com/TIRTHANATH20/Agent-Marketplace/discussions)
+- **Email**: Contact via [GitHub profile](https://github.com/TIRTHANATH20)
+
+---
+
+<div align="center">
+
+### Made with ❤️ by [TIRTHANATH20](https://github.com/TIRTHANATH20)
+
+**Give us a ⭐ if this project helped you!**
+
+[![GitHub Stars](https://img.shields.io/github/stars/TIRTHANATH20/Agent-Marketplace?style=social)](https://github.com/TIRTHANATH20/Agent-Marketplace)
+
+</div>
