@@ -1,0 +1,25 @@
+# Dependency directories
+node_modules/
+frontend/node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# dotenv
+.env
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/

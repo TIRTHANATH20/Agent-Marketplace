@@ -1,0 +1,19 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node version
+        run: node --version || true
+      - name: Python version
+        run: python3 --version || true
+      - name: Quick smoke
+        run: echo "CI smoke check - repository structure present" && ls -la
