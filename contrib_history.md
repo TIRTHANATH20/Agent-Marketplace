@@ -120,3 +120,4 @@ Contribution placeholder for 2026-05-25 12:00:00
 2024-11-25 12:00:00 — chore: cleanup repo metadata
 2024-12-05 12:00:00 — 
 2024-12-10 12:00:00 — docs: project import notes
+2024-12-15 12:00:00 — feat: show purchase token immediately in UI
