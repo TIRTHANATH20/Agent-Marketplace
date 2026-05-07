@@ -244,3 +244,4 @@ Contribution placeholder for 2026-05-25 12:00:00
 2025-03-20 12:00:00 — chore: cleanup repo metadata
 2025-03-25 12:00:00 — refactor: organize frontend components
 2025-04-05 12:00:00 — docs: project import notes
+2025-04-10 12:00:00 — feat: show purchase token immediately in UI
