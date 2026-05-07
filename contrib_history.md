@@ -117,3 +117,4 @@ Contribution placeholder for 2026-05-25 12:00:00
 2024-11-10 12:00:00 — docs: project import notes
 2024-11-15 12:00:00 — feat: show purchase token immediately in UI
 2024-11-20 12:00:00 — fix: backend purchase token endpoint
+2024-11-25 12:00:00 — chore: cleanup repo metadata
