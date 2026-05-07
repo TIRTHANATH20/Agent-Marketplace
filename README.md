@@ -412,14 +412,6 @@ You're free to use this for commercial projects, modify it, and distribute it as
 - **Discussions**: Join community conversations on [GitHub Discussions](https://github.com/TIRTHANATH20/Agent-Marketplace/discussions)
 - **Email**: Contact via [GitHub profile](https://github.com/TIRTHANATH20)
 
----
-
-<div align="center">
-
-### Made with ❤️ by [TIRTHANATH20](https://github.com/TIRTHANATH20)
-
-**Give us a ⭐ if this project helped you!**
-
 [![GitHub Stars](https://img.shields.io/github/stars/TIRTHANATH20/Agent-Marketplace?style=social)](https://github.com/TIRTHANATH20/Agent-Marketplace)
 
 </div>
