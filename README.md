@@ -8,7 +8,7 @@
 ![JWT](https://img.shields.io/badge/JWT-Secure%20Access-111827?style=for-the-badge)
 
 <p align="center">
-  <img src="https://via.placeholder.com/1200x420/0f172a/ffffff?text=Agent+Marketplace" alt="Agent Marketplace banner" />
+  <img src="assets/agent-marketplace-banner.svg" alt="Agent Marketplace banner" />
 </p>
 
 ## Overview
