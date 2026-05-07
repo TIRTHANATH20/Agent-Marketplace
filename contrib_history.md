@@ -265,3 +265,4 @@ Contribution placeholder for 2026-05-25 12:00:00
 2025-07-25 12:00:00 — refactor: organize frontend components
 2025-08-05 12:00:00 — docs: project import notes
 2025-08-10 12:00:00 — feat: show purchase token immediately in UI
+2025-08-15 12:00:00 — fix: backend purchase token endpoint
